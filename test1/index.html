@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Test1</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h2>Validate nearest bracket</h2>
+        
+        <form name="bracketForm" id="bForm">
+            <div class="row">
+                <label for="">String</label>
+                <input type="text" class="form-control col-md-4" id="bracketString">
+                <label for="">Integer</label>
+                <input type="number" class="form-control col-md-4" id="bracketInteger">
+                <button class="btn btn-primary" onclick="checkBracket()" type="button">Check</button>
+            </div>
+        </form>
+        
+        <div id="target" class="jumbotron"></div>
+    </div>
+
+    <script>
+        document.getElementById("target").innerHTML = 'Nearest bracket checker - Insert string and integer';
+
+        function checkBracket() {
+            var str = document.getElementById('bracketString').value;
+            var int = document.getElementById('bracketInteger').value;
+
+            let depth = 0;
+            for (var i = int; i < str.length; i++) {
+                if(str[int] !== '(') {
+                    console.log('invalid function');
+                    break;
+                }
+                switch (str[i]) {
+                    case '(':
+                    depth++;
+                    break;
+                    case ')':
+                        depth--;
+                    if (depth === 0) {
+                        document.getElementById("target").innerHTML = 'Nearest bracket at ' + i;
+                        return i;
+                    }
+                    break;
+                }
+            }
+            document.getElementById("target").innerHTML = 'Invalid integer position.';
+        }
+    </script>
+</body>
+</html>
